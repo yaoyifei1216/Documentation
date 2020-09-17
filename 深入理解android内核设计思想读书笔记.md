@@ -1,3 +1,12 @@
+---
+title: 深入理解android内核设计思想读书笔记
+tags: 
+ - android
+ - framework
+categories:
+ - 笔记
+---
+
 # 深入理解android内核设计思想读书笔记
 
 ### 5.1 Android进程和线程

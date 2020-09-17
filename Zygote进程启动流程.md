@@ -1,3 +1,12 @@
+---
+title:  Zygote进程启动过程
+tags: 
+ - android
+ - framework
+categories:
+ - 笔记
+---
+
 # Zygote进程启动过程
 
 frameworks/base/core/java/com/android/internal/os

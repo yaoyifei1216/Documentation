@@ -1,5 +1,11 @@
 ---
 typora-root-url: image
+title: Android R 新特性
+tags: 
+ - android
+ - framework
+categories:
+ - 笔记
 ---
 
 ## Android R 新特性
