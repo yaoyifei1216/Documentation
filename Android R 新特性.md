@@ -388,7 +388,7 @@ Android 11 包含一个新的 `ControlsProviderService`API，可用于提供所�
 
 长按power键进入：
 
-<img src="/home/yaoyifei/.config/Typora/typora-user-images/image-20200909164153413.png" alt="image-20200909164153413" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/yaoyifei1216/Documentation/master/image/image-20200909164153413.png" alt="image-20200909164153413" style="zoom: 50%;" />
 
 #### 2.2、媒体控件
 
@@ -427,7 +427,7 @@ android11针对刘海屏、瀑布屏、折叠屏等进行了适配
 
 **改进了会话——会话通知**
 
-<img src="/home/yaoyifei/.config/Typora/typora-user-images/image-20200909172704302.png" alt="image-20200909172704302" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/yaoyifei1216/Documentation/master/image/image-20200909172704302.png" alt="image-20200909172704302" style="zoom: 50%;" />
 
 **点击**: 启动 activity
 **长按**: 添加到桌面，显示气泡，提醒我，设置重要性
@@ -438,9 +438,9 @@ android11针对刘海屏、瀑布屏、折叠屏等进行了适配
 
 **气泡位于应用程序上方的浮动窗口中，显示在屏幕左/右边缘的小图标，新建时会弹出消息视图**
 
-<img src="/home/yaoyifei/.config/Typora/typora-user-images/image-20200909173259146.png" alt="image-20200909173259146" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/yaoyifei1216/Documentation/master/image/image-20200909173259146.png" alt="image-20200909173259146" style="zoom:50%;" />
 
-<img src="/home/yaoyifei/.config/Typora/typora-user-images/image-20200909173554365.png" alt="image-20200909173554365" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/yaoyifei1216/Documentation/master/image/image-20200909173554365.png" alt="image-20200909173554365" style="zoom:50%;" />
 
 **何时显示气泡**：
 
@@ -591,11 +591,13 @@ Android 11 引入了 `ActivityManager.getHistoricalProcessExitReasons()`方法�
 
 androidR之前：
 
-<img src="/home/yaoyifei/图片/2020-09-10 16-22-10屏幕截图.png" alt="2020-09-10 16-22-10屏幕截图"  />
+<img src="https://raw.githubusercontent.com/yaoyifei1216/Documentation/master/image/2020-09-10 16-22-10屏幕截图.png" alt="2020-09-10 16-22-10屏幕截图"  />
 
 androidR以后
 
-![2020-09-10 16-54-26屏幕截图](/home/yaoyifei/图片/2020-09-10 16-54-26屏幕截图.png)
+<img src="https://raw.githubusercontent.com/yaoyifei1216/Documentation/master/image/2020-09-10 16-54-26屏幕截图.png" alt="2020-09-10 16-54-26屏幕截图"  />
+
+
 
 WM核心仅包含与策略相关的代码，与呈现相关的所有内容（例如应用程序/窗口动画）都移至wm shell并在systemui中运行
 Shell通过新的TaskOrganizer API与内核进行通信
