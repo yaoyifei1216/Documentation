@@ -1,3 +1,7 @@
+---
+typora-root-url: image
+---
+
 ## Android R 新特性
 
 ### 1、隐私权更新
@@ -183,7 +187,7 @@ Android 10 中主要对共享目录进行了权限详细的划分，不再能通
 
 下图为MIUI12中的‘单次授权’：
 
-<img src="/home/yaoyifei/文档/Documentation/image/Screenshot_2020-09-10-17-38-05-145_com.miui.securitycenter.jpg" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/yaoyifei1216/Documentation/master/image/Screenshot_2020-09-10-17-38-05-145_com.miui.securitycenter.jpg" alt="img" style="zoom:25%;" />
 
 #### 1.3、自动重置权限
 
