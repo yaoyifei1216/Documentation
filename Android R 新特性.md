@@ -183,7 +183,7 @@ Android 10 中主要对共享目录进行了权限详细的划分，不再能通
 
 下图为MIUI12中的‘单次授权’：
 
-<img src="/home/yaoyifei/图片/Screenshot_2020-09-10-17-38-05-145_com.miui.securitycenter.jpg" alt="Screenshot_2020-09-10-17-38-05-145_com.miui.securitycenter" style="zoom: 25%;" />
+<img src="/home/yaoyifei/文档/Documentation/image/Screenshot_2020-09-10-17-38-05-145_com.miui.securitycenter.jpg" style="zoom:25%;" />
 
 #### 1.3、自动重置权限
 
