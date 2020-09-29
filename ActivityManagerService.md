@@ -1,3 +1,11 @@
+---
+title: ActivityManagerService
+tags: 
+ - android
+ - framework
+categories:
+ - 笔记
+---
 ## ActivityManagerService
 
 AMS是通过ActivityStack及其他数据结构来记录，管理系统中的Activity及其他组件状态的，并提供查询功能的一个系统服务。

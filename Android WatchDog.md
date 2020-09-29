@@ -1,3 +1,11 @@
+---
+title: Android WatchDog
+tags: 
+ - android
+ - system stability
+categories:
+ - 笔记
+---
 ## Android WatchDog
 
 #### 1.1问题背景
