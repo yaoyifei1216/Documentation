@@ -1,14 +1,20 @@
 ---
-title: Kotlin快速入门
+title: Kotlin入门
 tags: 
  - kotlin
 categories:
  - 笔记
 ---
 
-# Kotlin快速入门
+# Kotlin入门
 
 > 第一行代码——Android（第3版） 
+>
+> 系列文章旨在记录作者学习第一行代码第三版kotlin部分的历程
+>
+> 文章中的demo:https://github.com/yaoyifei1216/AndroidProgramming/tree/master/KotlinStarted
+
+本篇文章作为kotlin入门内容主要包括**变量和函数 程序控制语句 面向对象编程 以及两个常见的类模型**
 
 ## 变量
 
@@ -102,7 +108,7 @@ private fun maxValue2(a: Int, b: Int) = if (a > b) {
         b
     }
 
-//好像不太好看
+//上面的好像不太好看,还可以进一步简化
 private fun maxValue2(a: Int, b: Int) = if (a > b) a else b
 ```
 
@@ -326,12 +332,30 @@ Java中继承特性中的一个规定，子类中的构造函数必须调用父�
 
 ```Kotlin
 open class Person(val name: String, val age: Int) {
-    ...
+    fun eat() {
+        println(name + " is eating. He is " + age + " years old.")
+    }
 }
 
 class Student(val sno: String, val grade: Int, name: String, age: Int) : Person(name, age) {
-    ...
+    init {
+        println("sno is $sno")
+        println("grade is $grade")
+        println("name is $name")
+        println("age is $age")
+    }
 }
+
+//声明两个实例对象
+    var person = Person("yaoyifei", 23)
+    person.eat()
+    var student = Student("201521091065", 4, "yaoyifei", 23)
+//输出结果
+	yaoyifei is eating. He is 23 years old.
+	sno is 201521091065
+	grade is 4
+	name is yaoyifei
+	age is 23
 ```
 
 > 注意:在Student类的主构造函数中增加name和age这两个字段时，不能再将它们声明成val，因为在主构造函数中声明成val或者var的参数将自动成为该类的字段，这就会导致和父类中同名的name和age字段造成冲突。因此，这里的name和age参数前面我们不用加任何关键字，让它的作用域仅限定在主构造函数当中即可
@@ -344,3 +368,225 @@ class Student(val sno: String, val grade: Int, name: String, age: Int) : Person(
 
 综合以上几点就可以理解为什么要加上()了
 
+### 次构造函数
+
+1. 任何一个类只能有一个主构造函数，但是可以有多个次构造函数。
+2. 次构造函数也可以用于实例化一个类，这一点和主构造函数没有什么不同，只不过它是有函数体的。
+3. Kotlin规定，当一个类既有主构造函数又有次构造函数时，所有的次构造函数都必须调用主构造函数（包括间接调用）。
+
+```kotlin
+class Student(val sno: String, val grade: Int, name: String, age: Int) : Person(name, age) {
+
+    init {
+        println("sno is $sno")
+        println("grade is $grade")
+        println("name is $name")
+        println("age is $age")
+    }
+
+    constructor(): this("",0)//无参数次构造方法调用有两个参数的次构造方法
+    constructor(name: String, age: Int) : this("",0, name, age)//两个参数的次构造方法调用主构造方法
+}
+//三种不同风格的声明方式
+    var student1 = Student()//调用无参数次构造方法->两个参数的次构造方法->主构造方法 此处涉及到了间接调用
+    var student2 = Student("yaoyifei", 23)//两个参数的次构造方法->调用主构造方法
+    var student3 = Student("201521091065", 4, "yaoyifei", 23)//直接调用主构造方法
+//输出结果
+//student1
+sno is 
+grade is 0
+name is 
+age is 0
+//student2
+sno is 
+grade is 0
+name is yaoyifei
+age is 23
+//student3
+sno is 201521091065
+grade is 4
+name is yaoyifei
+age is 23
+```
+
+### 接口
+
+Kotlin中一个类最多只能继承一个父类，但是可以实现任意多个接口
+
+```kotlin
+//声明一个接口Study,有两个未实现方法
+interface Study {
+    fun readBooks()
+    fun doHomework()
+}
+
+//Student里实现上面的方法,kotlin中的继承以及实现用:关键字代替extends和implements,多个类或者接口中间用,隔开
+class Student(val sno: String, val grade: Int, name: String, age: Int) : Person(name, age), Study {
+    override fun readBooks() {
+        println("$name is reading.")
+    }
+
+    override fun doHomework() {
+        println("$name is doHomeworking.")
+    }
+}
+
+//main方法里实例化一个对象并调用接口里的方法
+	var student3 = Student("201521091065", 4, "yaoyifei", 23)
+    doStudy(student3)
+	fun doStudy(student: Study) {
+    	student.readBooks()
+    	student.doHomework()
+	}
+
+//输出结果
+sno is 201521091065
+grade is 4
+name is yaoyifei
+age is 23
+yaoyifei is reading.
+yaoyifei is doHomeworking.
+```
+
+Kotlin还增加了一个额外的功能：允许对接口中定义的函数进行默认实现。另外Java在JDK 1.8之后也开始支持这个功能了
+
+```kotlin
+//如果这里有默认实现了readBooks()
+interface Study {
+    fun readBooks() {
+        println("$name is reading.")
+    }
+    fun doHomework()
+}
+//这里就可以不再实现readBooks()了,代码是不会提示错误的
+class Student(val sno: String, val grade: Int, name: String, age: Int) : Person(name, age), Study {
+    override fun doHomework() {
+        println("$name is doHomeworking.")
+    }
+}
+```
+
+### 可见性修饰符
+
+![图像说明文字](http://epub.ituring.com.cn/api/storage/getbykey/screenshow?key=20038dfc5bdf78e4947e)
+
+- Kotlin中public修饰符是默认项
+- Kotlin抛弃了Java中的default可见性
+- Kotlin引入了一种新的可见性概念，只对同一模块中的类可见，使用的是internal修饰符。比如我们开发了一个模块给别人使用，但是有一些函数只允许在模块内部调用，不想暴露给外部，就可以将这些函数声明成internal。
+
+## 数据类和单例类
+
+### 数据类
+
+在一个规范的系统架构中，数据类通常占据着非常重要的角色，它们用于将服务器端或数据库中的数据映射到内存中，为编程逻辑提供数据模型的支持。
+
+MVC、MVP、MVVM之类的架构模式，不管是哪一种架构模式，其中的M指的就是数据类。
+
+数据类通常需要重写equals()、hashCode()、toString()这几个方法。
+
+一个基本的数据类的java写法:
+
+```java
+public class Cellphone {
+    String brand;
+    double price;
+
+    public Cellphone(String brand, double price) {
+        this.brand = brand;
+        this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Cellphone) {
+            Cellphone other = (Cellphone) obj;
+            return other.brand.equals(brand) && other.price == price;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return brand.hashCode() + (int) price;
+    }
+
+    @Override
+    public String toString() {
+        return "Cellphone(brand=" + brand + ", price=" + price + ")";
+    }
+}
+```
+
+一个基本的数据类的ktolin写法:
+
+```kotlin
+data class Cellphone(val brand: String, val price: Double)
+```
+
+也就是说一个data关键字就替我们做了实现了很多没有实际逻辑意义的代码,声明了data类就不再需要重写上述的方法了
+
+测试一下:
+
+```kotlin
+    val cellphone1 = Cellphone("Samsung", 1299.99)
+    val cellphone2 = Cellphone("Samsung", 1299.99)
+    println(cellphone1)
+    println(cellphone2)
+    println("cellphone1 equals cellphone2 " + (cellphone1 == cellphone2))
+    
+    //Cellphone类有data关键字的输出结果
+    Cellphone(brand=Samsung, price=1299.99)
+    Cellphone(brand=Samsung, price=1299.99)
+	cellphone1 equals cellphone2 true
+
+    //Cellphone类没有data关键字的输出结果
+	com.example.kotlinstarted.Cellphone@61bbe9ba
+	com.example.kotlinstarted.Cellphone@610455d6
+	cellphone1 equals cellphone2 false
+```
+
+### 单例类
+
+我们希望某个类在全局最多只能拥有一个实例，这时就可以使用单例模式
+
+java下的单例模型
+
+```java
+public class Singleton {
+    private static Singleton instance;
+
+    private Singleton() {}
+
+    public synchronized static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+
+    public void singletonTest() {
+        System.out.println("singletonTest is called.");
+    }
+}
+//调用这个单例
+Singleton singleton = Singleton.getInstance();
+singleton.singletonTest();
+```
+
+首先构造方法私有化,然后给外界提供了一个getInstance()静态方法用于获取Singleton的实例,如果缓存的Singleton实例不为null就直接返回,否则新建一个再返回
+
+kotlin的单例模型
+
+```kotlin
+object Singleton {
+    fun singletonTest() {
+        println("singletonTest is called.")
+    }
+}
+//调用
+Singleton.singletonTest() //Kotlin在背后自动帮我们创建了一个Singleton类的实例,然后我们可以直接使用单例类名调用,有点类似java静态方法的使用
+```
+
+Kotlin中我们不需要私有化构造函数，也不需要提供getInstance()这样的静态方法，只需要把class关键字改成object关键字，一个单例类就创建完成了。
+
+本篇文章作为入门内容到此就先告一段落,后续文章将会介绍kotlin的更多特性
